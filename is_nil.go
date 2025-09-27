@@ -13,7 +13,7 @@ func IsNil(value any) bool {
 		return true
 	}
 	switch iv.Kind() {
-	case reflect.Ptr, reflect.Slice, reflect.Map, reflect.Func, reflect.Interface:
+	case reflect.Interface, reflect.Ptr, reflect.Slice, reflect.Map, reflect.Func, reflect.Chan:
 		return iv.IsNil()
 	default:
 		return false
