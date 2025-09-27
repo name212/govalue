@@ -64,6 +64,12 @@ func TestIsNil(t *testing.T) {
 	f = nil
 	require.True(t, IsNil(f))
 
+	var ch chan struct{}
+	require.True(t, IsNil(ch))
+
+	ch = nil
+	require.True(t, IsNil(ch))
+
 	returnsNil := func() testInterface {
 		return nil
 	}
@@ -155,6 +161,9 @@ func TestIsNotNil(t *testing.T) {
 	f := func() {}
 	require.False(t, IsNil(f))
 
+	ch := make(chan struct{})
+	require.False(t, IsNil(ch))
+
 	returnsNoneNilFromLocal := func() testInterface {
 		var iii testInterface
 		iii = &testInterfaceImpl{}
@@ -235,4 +244,8 @@ func TestIsNilAfterSet(t *testing.T) {
 	f := func() {}
 	f = nil
 	require.True(t, IsNil(f))
+
+	ch := make(chan struct{})
+	ch = nil
+	require.True(t, IsNil(ch))
 }

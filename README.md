@@ -9,7 +9,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	
+
 	"github.com/name212/govalue"
 )
 
@@ -77,5 +77,11 @@ func main() {
 	fmt.Printf("IsNil: %v\n", govalue.IsNil(f))
 	f = func() {}
 	fmt.Printf("IsNil: %v\n", govalue.IsNil(f))
+
+	var ch chan struct{}
+	fmt.Printf("IsNil: %v\n", govalue.IsNil(ch))
+	ch = make(chan struct{})
+	fmt.Printf("IsNil: %v\n", govalue.IsNil(ch))
 }
+
 ```
