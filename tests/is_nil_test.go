@@ -250,3 +250,42 @@ func TestIsNilAfterSet(t *testing.T) {
 	ch = nil
 	require.True(t, govalue.IsNil(ch))
 }
+
+func TestIsNotNilFunc(t *testing.T) {
+	require.False(t, govalue.IsNotNil(nil))
+
+	var err error
+	require.False(t, govalue.IsNotNil(err))
+
+	var f func()
+	require.False(t, govalue.IsNotNil(f))
+
+	var ii *testInterfaceImpl
+	require.False(t, govalue.IsNotNil(ii))
+
+	var ch chan struct{}
+	require.False(t, govalue.IsNotNil(ch))
+
+	var sl []string
+	require.False(t, govalue.IsNotNil(sl))
+
+	var ival *int
+	require.False(t, govalue.IsNotNil(ival))
+
+	var m map[string]struct{}
+	require.False(t, govalue.IsNotNil(m))
+
+	require.True(t, govalue.IsNotNil(0))
+	require.True(t, govalue.IsNotNil(0.0))
+	require.True(t, govalue.IsNotNil(""))
+	require.True(t, govalue.IsNotNil(struct{}{}))
+	require.True(t, govalue.IsNotNil(&testInterfaceImpl{}))
+	require.True(t, govalue.IsNotNil(func() {}))
+	require.True(t, govalue.IsNotNil(make(chan struct{})))
+	require.True(t, govalue.IsNotNil(make([]string, 0)))
+	require.True(t, govalue.IsNotNil(make(map[string]string)))
+	require.True(t, govalue.IsNotNil(true))
+	var i = 1
+	ival = &i
+	require.True(t, govalue.IsNotNil(ival))
+}

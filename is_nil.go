@@ -19,3 +19,7 @@ func IsNil(value any) bool {
 		return false
 	}
 }
+
+func IsNotNil(value any) bool {
+	return !IsNil(value)
+}
