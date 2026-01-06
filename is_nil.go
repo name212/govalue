@@ -7,7 +7,10 @@ import (
 	"reflect"
 )
 
-func IsNil(value any) bool {
+// Nil
+// returns true if value is nil for any type
+// and true if interface value is not nil but have nil data
+func Nil(value any) bool {
 	iv := reflect.ValueOf(value)
 	if !iv.IsValid() {
 		return true
@@ -18,4 +21,17 @@ func IsNil(value any) bool {
 	default:
 		return false
 	}
+}
+
+// IsNil
+// Deprecated:
+// Use Nil instead of IsNil
+func IsNil(value any) bool {
+	return Nil(value)
+}
+
+// NotNil
+// returns inversion of Nil function
+func NotNil(value any) bool {
+	return !Nil(value)
 }
